@@ -18,25 +18,18 @@ $fs = 24;   // font size
 $image = imagecreatetruecolor($iw,$ih); 
 $white = imagecolorallocate($image, 255, 255, 255); 
 $black = imagecolorallocate($image, 0, 0, 0); 
-imagefilledrectangle($image, 0, 0, $iw, $ih, $white); 
-imagerectangle($image, 0, 0, 159, 49, $black);
+imagefilledrectangle($image, 0, 0, $iw, $ih, $white); // Background
 
-// Adding some static noise
-
-for($i=0; $i<500; $i++)
+for($i=0; $i<500; $i++) // Static noise: dots
 {
-    @imagesetpixel($image, rand(1,160), rand(1,50), imagecolorallocate($image, rand(200,250), rand(200,250), rand(200,250)));   
+    @imagesetpixel($image, rand(1,160), rand(1,50), imagecolorallocate($image, rand(1,250), rand(1,250), rand(1,250)));   
+}
+for($i=0; $i<50; $i++) // Static noise: lines
+{
+    imageline($image, rand(1,$iw), rand(1,$ih), rand(1,$iw), rand(1,$ih), imagecolorallocate($image, rand(170,250), rand(170,250), rand(170,250))); 
 }
 
-for($i=0; $i<50; $i++)
-{
-    @imagesetpixel($image, rand(1,160), rand(1,50), imagecolorallocate($image, rand(50,100), rand(50,100), rand(50,100)));  
-}
-
-for($i=0; $i<50; $i++)
-{
-    imageline($image, rand(1,$iw), rand(1,$ih), rand(1,$iw), rand(1,$ih), imagecolorallocate($image, rand(200,250), rand(200,250), rand(200,250))); 
-}
+imagerectangle($image, 0, 0, $iw-1, $ih-1, $black); // Border
 
 $y_min = ($ih / 2) + ($fs / 3) - 2; // Set minimum letter y position 
 $y_max = ($ih / 2) + ($fs / 3) + 2; // Set maximum letter y position 
@@ -50,14 +43,13 @@ foreach($letters as $letter){
     $y = rand($y_min, $y_max); 
     // check to see if this is first letter, yes then skip next line otherwise, 
     // add font size to x to move letter to the right 
-    if($i != 0) $x += $fs; 
+    if($i != 0) $x += $fs;
     $font_color = imagecolorallocate($image, rand(50,200), rand(50,200), rand(50,200)); 
     imagettftext($image, $fs, $angle, $x, $y, $font_color, 'bebas.ttf', $letter); 
     // Incrament $i 
     $i++; 
 } 
 // Finally build the image! 
-$black = imagecolorallocate($image, 0, 0, 0); 
 // Build the ASCII image 
 echo '<div id="captcha" style="line-height:1px; font-size:1px;">'; 
 for($h=0;$h<$ih;$h++){ 
