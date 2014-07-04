@@ -6,15 +6,15 @@ session_start();
 //                                                            /
 //    Simple contact form in PHP                              /
 //    Author: Teknix / Kim Eirik Kvassheim <kek@teknix.no>    /
-//    Version: 0.0.1                                          /
+//    Version: 1.0.0                                          /
 //                                                            /
 ///////////////////////////////////////////////////////////////
 
 // Config
 $enable_captcha     = true; // set to true/false to enable/disable CAPTCHA
 
-$mail_to            = "norkek@gmail.com"; // Mail to
-$mail_cc            = "kek@teknix.no"; // Mail copy to (Optional)
+$mail_to            = ""; // Mail to
+$mail_cc            = ""; // Mail copy to (Optional)
 $mail_subject       = "PHP Contact Form";
 $phone_countrycode  = "+47";
 
