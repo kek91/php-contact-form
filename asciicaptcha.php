@@ -2,7 +2,7 @@
 ///////////////////////////////////////////////////////////////////
 //                                                                /
 //    ASCII PHP Captcha                                           /
-//    Author: http://phpsnips.com/71/ASCII-CAPTCHA                /
+//    Original: http://phpsnips.com/71/ASCII-CAPTCHA              /
 //    Modified by Teknix / Kim Eirik Kvassheim <kek@teknix.no>    /
 //                                                                /
 ///////////////////////////////////////////////////////////////////
@@ -36,7 +36,8 @@ $y_max = ($ih / 2) + ($fs / 3) + 2; // Set maximum letter y position
 $x = $fs / 2; // Set the letter starting point 
 
 $i = 0; 
-foreach($letters as $letter){ 
+foreach($letters as $letter)
+{ 
     // Set the angle of the letter random from -45 and 45 
     $angle = rand(-30, 30); 
     // Set a random y position of the letter using using the above min and max 
@@ -46,30 +47,28 @@ foreach($letters as $letter){
     if($i != 0) $x += $fs;
     $font_color = imagecolorallocate($image, rand(50,200), rand(50,200), rand(50,200)); 
     imagettftext($image, $fs, $angle, $x, $y, $font_color, 'bebas.ttf', $letter); 
-    // Incrament $i 
     $i++; 
 } 
-// Finally build the image! 
 // Build the ASCII image 
 echo '<div id="captcha" style="line-height:1px; font-size:1px;">'; 
-for($h=0;$h<$ih;$h++){ 
-    for($w=0;$w<=$iw;$w++){ 
+for($h=0;$h<$ih;$h++)
+{ 
+    for($w=0;$w<=$iw;$w++)
+    { 
         $rgb = imagecolorat($image, $w, $h); 
         $r = ($rgb >> 16) & 0xFF; 
         $g = ($rgb >> 8) & 0xFF; 
         $b = $rgb & 0xFF; 
-        if($w == $iw){ 
+        if($w == $iw)
+        { 
             echo '<br />'; 
-        }else{ 
-            echo '<span style="color:rgb('.$r.','.$g.','.$b.');">#</span>'; 
-        } 
-    } 
-} 
+        }
+        else
+        {
+            echo '<span style="color:rgb('.$r.','.$g.','.$b.');">#</span>';
+        }
+    }
+}
 echo '</div>'; 
-//End ASCII Image Build 
 $_SESSION['CAPTCHA'] = $string; 
-?> 
-
-<p>
-    Image String: <?php echo $_SESSION['CAPTCHA']; ?> 
-</p>
+?>
