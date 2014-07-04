@@ -9,6 +9,10 @@ This uses pure HTML and PHP, but better UI feedback with jQuery/ajax might be im
 Please note this script uses your php.ini SMTP configuration for sending emails.
 The standard PHP mail() function does not support SMTP authentication/SSL etc.
 
+The CAPTCHA is an ASCII generator which outputs thousands of # signs instead of a picture.
+Should be pretty secure against SPAM bots.
+
+The ASCII CAPTCHA is a customized script, you may find the original here: http://phpsnips.com/71/ASCII-CAPTCHA
 
 ## Install instructions
 - Clone the project or copy the files: contact.php, asciicaptcha.php and bebas.ttf
@@ -22,3 +26,4 @@ The standard PHP mail() function does not support SMTP authentication/SSL etc.
 
 ## Changelog
 04.07.2014 v1.0.0
+- First version released
