@@ -25,5 +25,10 @@ The ASCII CAPTCHA is a customized script, you may find the original here: http:/
 
 
 ## Changelog
+13.07.2014 v1.1.0
+- Forgot to output the "telephone" field in the email
+- Name is now also outputted in the email
+- Added the nl2br() function for message for proper linebreaking
+
 04.07.2014 v1.0.0
 - First version released
