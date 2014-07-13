@@ -42,7 +42,7 @@ function escapeNumber($num)
     return $num;
 }
 
-function sendMail($to, $cc, $from, $subject, $msg)
+function sendMail($to, $cc, $from, $subject, $msg, $tel)
 {
     $headers  = "From: $from\r\n";
     $headers .= "Reply-To: $from\r\n";
@@ -51,6 +51,7 @@ function sendMail($to, $cc, $from, $subject, $msg)
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     $message  = '<html><body>';
     $message .= '<h1>'.$subject.'</h1>';
+    $message .= 'Telephone: '.$tel.'<br>';
     $message .= $msg;
     $message .= '</body></html>';
     if(mail($to, $subject, $message, $headers)) return true;
@@ -70,7 +71,7 @@ if(!empty($_POST['name']))
         $telephone      = escapeNumber($_POST['telephone']);
         $captcha        = escape($_POST['captcha']);
         $captchaAnswer  = escape($_SESSION['CAPTCHA']);
-        $message        = escape($_POST['message']);
+        $message        = nl2br(escape($_POST['message']));
 
         // In case of any errors we save the input fields to $_SESSION
         $_SESSION['formName']       = $name;
@@ -109,13 +110,14 @@ if(!empty($_POST['name']))
 
         if($error === false)
         {
-            if(sendMail($mail_to, $mail_cc, $email, $mail_subject, $message))
+            if(sendMail($mail_to, $mail_cc, $email, $mail_subject, $message, $telephone))
             {
                 echo $mail_sent_success;
                 echo '<br><br>Copy of the email:<br><br>
                 <h1>'.$mail_subject.'</h1>
-                From: '.$email.'<br><br>
-                '.$message;
+                From: '.$email.'<br>
+                Telephone: '.$telephone.'<br>
+                Message: <br>'.$message;
                 $_SESSION['formName']       = "";
                 $_SESSION['formEmail']      = "";
                 $_SESSION['formTelephone']  = "";
