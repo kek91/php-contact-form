@@ -42,7 +42,7 @@ function escapeNumber($num)
     return $num;
 }
 
-function sendMail($to, $cc, $from, $subject, $msg, $tel)
+function sendMail($to, $cc, $from, $subject, $msg, $name, $tel)
 {
     $headers  = "From: $from\r\n";
     $headers .= "Reply-To: $from\r\n";
@@ -51,6 +51,7 @@ function sendMail($to, $cc, $from, $subject, $msg, $tel)
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     $message  = '<html><body>';
     $message .= '<h1>'.$subject.'</h1>';
+    $message .= 'Name: '.$name.'<br>';
     $message .= 'Telephone: '.$tel.'<br>';
     $message .= $msg;
     $message .= '</body></html>';
@@ -110,7 +111,7 @@ if(!empty($_POST['name']))
 
         if($error === false)
         {
-            if(sendMail($mail_to, $mail_cc, $email, $mail_subject, $message, $telephone))
+            if(sendMail($mail_to, $mail_cc, $email, $mail_subject, $message, $name, $telephone))
             {
                 echo $mail_sent_success;
                 echo '<br><br>Copy of the email:<br><br>
