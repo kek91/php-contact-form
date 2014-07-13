@@ -51,7 +51,7 @@ function sendMail($to, $cc, $from, $subject, $msg, $name, $tel)
     $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
     $message  = '<html><body>';
     $message .= '<h1>'.$subject.'</h1>';
-    $message .= 'Name: '.$name.'<br>';
+    $message .= 'Name: '.$name.' <'.$from.'><br>';
     $message .= 'Telephone: '.$tel.'<br>';
     $message .= $msg;
     $message .= '</body></html>';
@@ -116,7 +116,7 @@ if(!empty($_POST['name']))
                 echo $mail_sent_success;
                 echo '<br><br>Copy of the email:<br><br>
                 <h1>'.$mail_subject.'</h1>
-                From: '.$email.'<br>
+                From: '.$name.' <'.$email.'><br>
                 Telephone: '.$telephone.'<br>
                 Message: <br>'.$message;
                 $_SESSION['formName']       = "";
