@@ -70,7 +70,7 @@ if(!empty($_POST['name']))
         $name           = escape($_POST['name']);
         $email          = escape($_POST['email']);
         $telephone      = escapeNumber($_POST['telephone']);
-        $captcha        = escape($_POST['captcha']);
+        $captcha        = strtolower(escape($_POST['captcha']));
         $captchaAnswer  = escape($_SESSION['CAPTCHA']);
         $message        = nl2br(escape($_POST['message']));
 
