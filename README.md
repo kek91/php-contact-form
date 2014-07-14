@@ -25,6 +25,9 @@ The ASCII CAPTCHA is a customized script, you may find the original here: http:/
 
 
 ## Changelog
+14.07.2014 v1.1.1
+- Bug fix for CAPTCHA, forgot to transform input to lower case. This is now fixed with strtolower()
+
 13.07.2014 v1.1.0
 - Forgot to output the "telephone" field in the email
 - Name is now also outputted in the email
